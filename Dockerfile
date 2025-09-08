@@ -5,13 +5,13 @@ FROM maven:3.8.7-openjdk-17 AS build
 WORKDIR /app
 
 # Copia o arquivo pom.xml para que as dependências sejam baixadas em cache
-COPY pom.xml .
+COPY todolist/pom.xml .
 
 # Baixa as dependências do projeto
 RUN mvn dependency:go-offline
 
 # Copia o restante do código da aplicação
-COPY src ./src
+COPY todolist/src ./src
 
 # Empacota a aplicação em um arquivo .jar executável
 RUN mvn package
